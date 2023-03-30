@@ -4,7 +4,7 @@ We often use fuzzers in our research to find low-hanging bugs in network protoco
 
 This repository contains a network fuzzer that we developed for [Pwn2Own 2022](https://www.zerodayinitiative.com/blog/2022/4/14/pwn2own-miami-2022-results) competition to fuzz OPCUA protocol. The [OPC UA](https://opcfoundation.org/about/opc-technologies/opc-ua/) (Open Platform Communications Unified Architecture) protocol is a standard means of data-exchange between industrial sensors and either on-premises servers or cloud management platforms. 
 
-The fuzzer is based on the [boofuzz](https://github.com/jtpereyda/boofuzz) framework.
+The fuzzer is based on the [boofuzz](https://github.com/jtpereyda/boofuzz) framework. For more info check out our Claroty Team82 blog [here](https://claroty.com/team82/research/team82-releases-homegrown-opc-ua-network-fuzzer-based-on-boofuzz)
 
 ![](resources/boofuzz.png)
 
