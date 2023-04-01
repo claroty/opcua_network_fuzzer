@@ -39,7 +39,7 @@ Sometimes before running the fuzzer you want to ensure that the OPC UA session i
 - [UA-.NETStandard](https://github.com/OPCFoundation/UA-.NETStandard) (dotnetstd)
 - [Softing OPC Server](https://industrial.softing.com/products/opc-opc-ua-software-platform.html) (softing)
 - [Prosys OPC UA Simulation Server](https://www.prosysopc.com/products/opc-ua-simulation-server/) (prosys)
-- [Prosys OPC UA Simulation Server](https://www.unified-automation.com/downloads/opc-ua-servers.html) (unified)
+- [OPC UA C++ Demo Server](https://www.unified-automation.com/downloads/opc-ua-servers.html) (unified)
 - [Ignition's OPC UA Server](https://docs.inductiveautomation.com/display/DOC81/OPC+UA) (ignition)
 
 ### Supported request types:
