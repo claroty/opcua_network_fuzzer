@@ -5,7 +5,7 @@ import random
 import os
 from boofuzz import *
 from opcua_session import create_session, OBJECT
-from ocua_services import *
+from opcua_services import *
 from opcua_utils import *
 from fuzzer import Fuzzer, _s_update
 import argparse

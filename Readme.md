@@ -24,7 +24,7 @@ python3 opcua_fuzzer.py --target_host_ip 10.10.10.10 --target_host_port 4897 --t
 
 - `target_host_ip` IP of the OPCUA Server
 - `target_host_port` PORT which the OPCUA Server Listens to
-- `target_app_name` The type of the OPCUA Server to be fuzzed, choose from `kepware`, `dotnetstd`, `softing`, `prosys`, `unified`, `ignition`
+- `target_app_name` The type of the OPCUA Server to be fuzzed, choose from `kepware`, `dotnetstd`, `softing`, `prosys`, `unified`, `ignition`,`s2opc`
 - `request_opcua_to_fuzz` The OPCUA Server request type to fuzz, choose from `read_request`, `browse_request`, `browse_next_request`, `create_subsctibtion_request`, `add_nodes_request`, `history_read_request`
 
 ### Results
@@ -41,6 +41,7 @@ Sometimes before running the fuzzer you want to ensure that the OPC UA session i
 - [Prosys OPC UA Simulation Server](https://www.prosysopc.com/products/opc-ua-simulation-server/) (prosys)
 - [OPC UA C++ Demo Server](https://www.unified-automation.com/downloads/opc-ua-servers.html) (unified)
 - [Ignition's OPC UA Server](https://docs.inductiveautomation.com/display/DOC81/OPC+UA) (ignition)
+- [Systerel S2OPC OPC UA Demo Server](https://gitlab.com/systerel/S2OPC)
 
 ### Supported request types:
 - [Read Service](https://reference.opcfoundation.org/Core/Part4/v105/docs/5.10.2) (read_request): we are fuzzing the nodes to read

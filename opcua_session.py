@@ -367,7 +367,7 @@ def create_session(sock, program_type, session_timeout=360000, open_timestamp=No
     # Create
     create_session_parsed = OPCUA_MESSAGE.parse(create_raw)
     create_session_parsed.opc_data.secure_channel_id = secure_channel_id
-    if program_type == "ignition":
+    if (program_type == "ignition") or (program_type == "s2opc"):
         create_session_parsed.opc_data.security_token_id = secure_token_id
     if session_timeout:
         create_session_parsed.opc_data.object.object.request_session_timeout = session_timeout
@@ -382,7 +382,7 @@ def create_session(sock, program_type, session_timeout=360000, open_timestamp=No
 
     # Activate
     activate_session_parsed = OPCUA_MESSAGE.parse(activate_raw)
-    if program_type == "ignition":
+    if (program_type == "ignition") or (program_type == "s2opc"):
         activate_session_parsed.opc_data.security_token_id = secure_token_id
     activate_session_parsed.opc_data.secure_channel_id = secure_channel_id
     activate_session_parsed.opc_data.object.object.auth_token.main_object = auth_id

@@ -188,7 +188,7 @@ def build_browse_request_packet(name):
                     "browse_description", bound_block_repetitions="array_size", name="browse_description_repeater")
 
 
-def build_create_subsctibtion_request_packet(name):
+def build_create_subscription_request_packet(name):
     s_initialize(name)
     header_common_block()
     with s_block("opcua_service"):
@@ -289,7 +289,7 @@ def init_request_by_service(name):
 services_callbacks_dict = {
     "read_request": build_read_request_packet,
     "browse_request": build_browse_request_packet,
-    "create_subsctibtion_request": build_create_subsctibtion_request_packet,
+    "create_subscription_request": build_create_subscription_request_packet,
     "browse_next_request": build_browse_next_request_packet,
     "add_nodes_request": build_add_nodes_request_packet,
     "history_read_request": build_history_read_request_packet,

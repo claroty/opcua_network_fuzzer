@@ -7,7 +7,7 @@ from struct import pack, unpack
 OPCUA_RESP_SIZE = 1024
 
 target_apps = ["softing", "dotnetstd",
-               "prosys", "unified", "kepware", "triangle", "ignition"]
+               "prosys", "unified", "kepware", "triangle", "ignition", "s2opc"]
 
 opcua_services_list = [8917, 631, 11889, 11890, 263, 266, 269, 272, 275, 278, 281, 284, 287, 298, 8251,
                        310, 391, 394, 397, 422, 425, 306, 314, 428, 431, 434, 437, 440, 443,
@@ -40,6 +40,8 @@ opcua_services_list_kepware = [631, 422, 428, 437, 446, 452, 461, 467, 473, 479,
                                533, 554, 560, 566, 673, 751, 763, 769, 775, 781, 787, 793, 799, 826, 832, 841, 847, ]
 opcua_services_list_softing = [631, 11889, 11890, 263, 266, 269, 272, 275, 278, 281, 284, 287, 298, 8251, 310, 394, 397, 422, 425, 306, 314, 428, 431, 434, 437, 440, 449, 455, 346, 458, 461, 464, 318, 321, 324, 327, 940, 467, 470, 473, 476, 479, 482, 357, 366, 369, 378, 488, 491, 381, 494, 497, 500, 503, 506, 509, 520, 524, 527, 530, 533, 536, 539, 542, 545, 551, 554, 557, 560, 563, 566, 569, 337, 343, 572, 575, 579, 582, 585, 588, 591, 600, 603, 606, 609, 612, 615, 618,
                                621, 624, 628, 260, 634, 637, 640, 643, 646, 652, 655, 658, 11226, 11227, 661, 664, 667, 670, 673, 676, 682, 11300, 685, 691, 694, 697, 931, 700, 703, 706, 709, 712, 715, 721, 724, 727, 733, 736, 742, 745, 748, 751, 754, 757, 760, 763, 766, 769, 772, 775, 778, 781, 784, 787, 790, 793, 796, 799, 802, 805, 947, 811, 916, 919, 922, 826, 829, 832, 835, 838, 841, 844, 847, 850, 401, 404, 407, 410, 413, 416, 419, 340, 855, 11957, 11958, 864, 867, 870, 876, 889, 12089, 896, 893, ]
+opcua_services_list_s2opc = [631, 422, 428, 437, 446, 452, 461, 467, 473, 479, 527,
+                             533, 554, 560, 566, 673, 751, 763, 769, 775, 781, 787, 793, 799, 826, 832, 841, 847, ]
 
 
 class AttributeType(Enum):
@@ -134,6 +136,8 @@ def get_services_list(target_app):
     # lazy for ignition
     elif target_app == 'ignition':
         service_list = opcua_services_list_dotnetstd
+    elif target_app == 's2opc':
+        service_list = opcua_services_list_s2opc
 
     else:
         raise Exception("Invalid target app name")
@@ -156,6 +160,8 @@ def get_sanity_payload(target_app):
         return TRIANGLE_MSG_READ
     if target_app == "ignition":
         return IGNITION_MSG_READ
+    if target_app == "s2opc":
+        return S2OPC_MSG_READ
 
 
 def receive_rest_of_response(sock, response, report_service_fault):
@@ -176,7 +182,7 @@ def close_session(sock, target_app, ses_info):
     try:
         close_session_payload, close_channel_payload = get_raw_close_session_messages(
             target_app)
-        if target_app in ["prosys", "kepware", "softing", "unified", "triangle", "ignition"]:
+        if target_app in ["prosys", "kepware", "softing", "unified", "triangle", "ignition", "s2opc"]:
             # close session
             close_session_payload = bytearray(close_session_payload)
 
@@ -459,5 +465,21 @@ IGNITION_MSG_READ = b"MSGF\x92\x00\x00\x00\n\x00\x00\x00\x0c\x00\x00\x00\x04\x00
 \x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x03\x00\x00\x00\x02\x00\x00\x00\x01\
 \x00\xb6-\r\x00\x00\x00\xff\xff\xff\xff\x00\x00\xff\xff\xff\xff\x01\x00\xb9-\r\
 \x00\x00\x00\xff\xff\xff\xff\x00\x00\xff\xff\xff\xff"
+
+
+##########################################
+#
+# S2OPC
+#
+##########################################
+
+S2OPC_MSG_READ = b"\x4d\x53\x47\x46\x7e\x00\x00\x00\x8d\x10\xd6\x2e\x97\x80\x09\x1b\
+\x19\x00\x00\x00\x19\x00\x00\x00\x01\x00\x7a\x02\xfc\xae\x31\xb4\
+\x14\x90\xd9\x01\x58\x42\x0f\x00\x00\x00\x00\x00\x00\x00\x00\x00\
+\x00\x00\x00\x00\x08\x00\x00\x00\x02\x00\x00\x35\x80\x01\x06\x08\
+\x00\x00\x00\x01\x14\x00\x00\x0a\x00\x00\x00\x53\x65\x72\x76\x65\
+\x72\x54\x79\x70\x65\x01\x15\x02\x0a\x00\x00\x00\x53\x65\x72\x76\
+\x65\x72\x54\x79\x70\x65\x02\x00\x00\x35\x80\x02\x00\x00\x35\x80\
+\x02\x00\x00\x35\x80\x02\x00\x00\x35\x80\x00\x00\x00\x00"
 
 #################
