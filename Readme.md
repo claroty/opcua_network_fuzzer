@@ -24,7 +24,7 @@ python3 opcua_fuzzer.py --target_host_ip 10.10.10.10 --target_host_port 4897 --t
 
 - `target_host_ip` IP of the OPCUA Server
 - `target_host_port` PORT which the OPCUA Server Listens to
-- `target_app_name` The type of the OPCUA Server to be fuzzed, choose from `kepware`, `dotnetstd`, `softing`, `prosys`, `unified`, `ignition`,`s2opc`
+- `target_app_name` The type of the OPCUA Server to be fuzzed, choose from `kepware`, `dotnetstd`, `softing`, `prosys`, `unified`, `ignition`, `s2opc`, `asyncua`
 - `request_opcua_to_fuzz` The OPCUA Server request type to fuzz, choose from `read_request`, `browse_request`, `browse_next_request`, `create_subscription_request`, `add_nodes_request`, `history_read_request`
 
 ### Results
